@@ -6,7 +6,7 @@ import './ReviewsPage.css';
 
 const ReviewsPage = ({ match, reviews }) => (
   <div className="grid-container">
-    <ReviewList reviews={reviews} />
+    <ReviewList reviews={reviews} fullData={"no"}/>
 
 
   </div>

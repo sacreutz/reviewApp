@@ -8,7 +8,7 @@ import {Link, Route, Router, NavLink} from 'react-router-dom';
 const ReviewList = ({ reviews }) => {
   const renderReviews = reviews.map(review =>
     <ul className="grid-container">
-    <NavLink key={review.id} to={`/reviews/${review.id}`}><ReviewCard review={review} reviewId={review.id}/></NavLink>
+    <NavLink key={review.id} to={`/reviews/${review.id}`}><ReviewCard review={review} reviewId={review.id} someData={"yes"}/></NavLink>
     </ul>
   );
 
