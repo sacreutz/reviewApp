@@ -1,26 +1,40 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import "./App.css";
+import MainContainer from "./MainContainer";
+import ReviewCard from "./ReviewCard";
+import ReviewList from "./ReviewList";
+import ReviewsPage from "./ReviewsPage";
+import { BrowserRouter as Router, Link, Route } from "react-router-dom";
+import Data from "./jsonData.js";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+const App = () => (
+  <Router>
+    <div>
+      <Route exact path="/" render={() => <div>Home</div>} />
+      <Route
+        exact
+        path="/reviews"
+        render={routerProps => <ReviewsPage reviews={Data} />}
+      />
+      <Route
+        path={`/reviews/:reviewId`}
+        render={routerProps => {
+           const reviewIdFromParams = routerProps.match.params.reviewId;
+         // const reviewIdFromParams = "hello";
+          console.log("routerProps", routerProps);
+          console.log("match", routerProps.match);
+          //add lodash get here
+          const test = Data.filter(
+            review => console.log(review) || review.id === reviewIdFromParams
+          )[0];
+
+          console.log("test", test);
+          //  console.log("reviewId", reviewId);
+          return <ReviewCard review={test} reviewId={reviewIdFromParams} />;
+        }}
+      />
     </div>
-  );
-}
+  </Router>
+);
 
 export default App;

@@ -1,0 +1,14 @@
+.grid-container {
+    display: grid;
+    grid-template-columns: 3 3 3;
+
+}
+
+ul {
+  columns: 3;
+}
+
+li {
+    display: inline-block;
+    vertical-align: top;
+}
