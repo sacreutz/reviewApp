@@ -3,29 +3,48 @@ import "./ReviewCard.css";
 import CommentForm from "./CommentForm";
 import star from "./star.png";
 
-const ReviewCard = props => {
-  const myStyle = {
+
+class ReviewCard extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { comment: '',
+                    done: false}
+    this.updateComment = this.updateComment.bind(this);
+    this.updateDone = this.updateDone.bind(this);
+  }
+
+ 
+  updateComment(newComment){
+    this.setState( {comment: newComment.comment, done: newComment.done})
+  }
+
+  updateDone(newDone) {
+    this.setState({done : newDone.done})
+  }
+
+
+render(){
+    const myStyle = {
     position: "absolute",
     top: "20%",
     left: "50%",
     margin: "-70px 0 0 -170px"
   };
-  const { reviewId, review } = props;
-  const starInteger = parseInt(review.rating);
   //guard clause: render something different if review doesn't exist
-  if (props.someData === "yes") {
+  const starInteger = parseInt(this.props.review.rating);
+  if (this.props.someData === "yes") {
     return (
       <li className="cardContainer">
-        <h3>{review.place}</h3>
+        <h3>{this.props.review.place}</h3>
         <h3>
           {[...Array(starInteger)].map((e, i) => (
             <img className="img-responsive" src={star} alt="star" />
           ))}
         </h3>
         <div>
-          <h4> Submitted by: {review.author}</h4>
+          <h4> Submitted by: {this.props.review.author}</h4>
 
-          <h4>Date submitted: {review.published_at.slice(0, 15)}</h4>
+          <h4>Date submitted: {this.props.review.published_at.slice(0, 15)}</h4>
         </div>
       </li>
     );
@@ -33,24 +52,25 @@ const ReviewCard = props => {
     return (
       <div>
         <li className="cardContainer" style={myStyle}>
-          <h3>{review.place}</h3>
+          <h3>{this.props.review.place}</h3>
           <h3>
             {[...Array(starInteger)].map((e, i) => (
               <img className="img-responsive" src={star} alt="star" />
             ))}
           </h3>
-          {review && <h5>{review.content}</h5>}
+          {this.props.review && <h5>{this.props.review.content}</h5>}
 
-          <h4> Submitted by: {review.author}</h4>
+          <h4> Submitted by: {this.props.review.author}</h4>
 
-          <h4>Date submitted: {review.published_at.slice(0, 15)}</h4>
+          <h4>Date submitted: {this.props.review.published_at.slice(0, 15)}</h4>
         </li>
         <div>
-          <CommentForm />
+          <CommentForm done={this.state.done} comment={this.state.comment} updateComment={this.updateComment} updateDone={this.updateDone}/>
         </div>
       </div>
     );
   }
+}
 };
 
 export default ReviewCard;
