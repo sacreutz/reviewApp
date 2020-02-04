@@ -1,6 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import "./ReviewCard.css";
+import CommentForm from './CommentForm';
 
 const ReviewCard = (props) => {
   const myStyle = {
@@ -28,6 +29,7 @@ const ReviewCard = (props) => {
   else {
 
     return (
+      <div>
       <li className="cardContainer" style={myStyle}>
        <h3>{review.place}</h3>
       <h3>Rating: {review.rating}</h3>
@@ -37,6 +39,10 @@ const ReviewCard = (props) => {
 
       <h4>Date submitted: {review.published_at}</h4>
     </li>
+    <div>
+      <CommentForm />
+    </div>
+    </div>
     )
   }
 }

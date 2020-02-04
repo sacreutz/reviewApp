@@ -32,15 +32,14 @@ const App = () => (
         render={routerProps => {
            const reviewIdFromParams = routerProps.match.params.reviewId;
 
-          console.log("routerProps", routerProps);
-          console.log("match", routerProps.match);
+         // console.log("routerProps", routerProps);
+         // console.log("match", routerProps.match);
           //add lodash get here
           const test = Data.filter(
             review => console.log(review) || review.id === reviewIdFromParams
           )[0];
 
-          console.log("test", test);
-          //  console.log("reviewId", reviewId);
+         // console.log("test", test);
           return (
           <div>
           <Navbar />
