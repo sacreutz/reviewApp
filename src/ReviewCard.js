@@ -1,63 +1,56 @@
-import React from 'react';
-import {Link} from 'react-router-dom';
+import React from "react";
 import "./ReviewCard.css";
-import CommentForm from './CommentForm';
+import CommentForm from "./CommentForm";
+import star from "./star.png";
 
-const ReviewCard = (props) => {
+const ReviewCard = props => {
   const myStyle = {
     position: "absolute",
     top: "20%",
     left: "50%",
     margin: "-70px 0 0 -170px"
-  }
-  const {reviewId, review} = props;
-  //console.log(props);
+  };
+  const { reviewId, review } = props;
+  const starInteger = parseInt(review.rating);
   //guard clause: render something different if review doesn't exist
   if (props.someData === "yes") {
-  return (
-    <li className="cardContainer">
-      <h3>{review.place}</h3>
-      <h3>Rating: {review.rating} stars</h3>
+    return (
+      <li className="cardContainer">
+        <h3>{review.place}</h3>
+        <h3>
+          {[...Array(starInteger)].map((e, i) => (
+            <img className="img-responsive" src={star} alt="star" />
+          ))}
+        </h3>
+        <div>
+          <h4> Submitted by: {review.author}</h4>
 
-      <div>
-      <h4> Submitted by: {review.author}</h4>
-
-      <h4>Date submitted: {review.published_at.slice(0,15)}</h4>
-      </div>
-    </li>
-  );
-  }
-  else {
-
+          <h4>Date submitted: {review.published_at.slice(0, 15)}</h4>
+        </div>
+      </li>
+    );
+  } else {
     return (
       <div>
-      <li className="cardContainer" style={myStyle}>
-       <h3>{review.place}</h3>
-      <h3>Rating: {review.rating}</h3>
-      {review && <h5>{review.content}</h5>}
+        <li className="cardContainer" style={myStyle}>
+          <h3>{review.place}</h3>
+          <h3>
+            {[...Array(starInteger)].map((e, i) => (
+              <img className="img-responsive" src={star} alt="star" />
+            ))}
+          </h3>
+          {review && <h5>{review.content}</h5>}
 
-      <h4> Submitted by: {review.author}</h4>
+          <h4> Submitted by: {review.author}</h4>
 
-      <h4>Date submitted: {review.published_at.slice(0,15)}</h4>
-
-    </li>
-    <div>
-      <CommentForm />
-    </div>
-    </div>
-    )
+          <h4>Date submitted: {review.published_at.slice(0, 15)}</h4>
+        </li>
+        <div>
+          <CommentForm />
+        </div>
+      </div>
+    );
   }
-}
-
-
-
-
-
-
-
-
-
-
-
+};
 
 export default ReviewCard;
