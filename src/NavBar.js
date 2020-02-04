@@ -1,13 +1,14 @@
 import './Navbar.css';
 import React from 'react';
+import {NavLink} from 'react-router-dom';
 
 class Navbar extends React.Component{
   render() {
       return (
           <div>
             <ul id="nav">
-              <li><a href="#">Home</a></li>
-              <li><a href="#">Reviews</a></li>
+              <li><NavLink to={'/reviews'}>Reviews</NavLink></li>
+
             </ul>
           </div>
       );
@@ -15,3 +16,8 @@ class Navbar extends React.Component{
 }
 
 export default Navbar;
+
+
+
+
+

@@ -41,7 +41,12 @@ const App = () => (
 
           console.log("test", test);
           //  console.log("reviewId", reviewId);
-          return <ReviewCard review={test} reviewId={reviewIdFromParams} />;
+          return (
+          <div>
+          <Navbar />
+          <ReviewCard review={test} reviewId={reviewIdFromParams} />
+          </div>
+          )
         }}
       />
     </div>
