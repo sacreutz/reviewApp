@@ -8,11 +8,8 @@ class CommentForm extends React.Component {
 
     this.handleChange = this.handleChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
-    this.isDisabled = this.isDisabled.bind(this);
     this.sendDelta = this.sendDelta.bind(this);
-
   }
-
 
   sendDelta(delta) {
     let newComment = Object.assign({}, delta);
@@ -20,7 +17,7 @@ class CommentForm extends React.Component {
   }
 
   handleChange(event) {
-    this.sendDelta({ comment: event.target.value })
+    this.sendDelta({ comment: event.target.value });
     this.setState({ comment: event.target.value });
   }
 
@@ -28,20 +25,8 @@ class CommentForm extends React.Component {
     event.preventDefault();
     this.setState(prevState => ({ submittedComment: prevState.comment }));
 
-    let newDone = Object.assign({}, {done: !this.props.done})
-    this.props.updateDone(newDone)
-
-  }
-
-  clearForm = () => {
-    document.getElementById("comment-form").reset();
-  };
-
-  isDisabled() {
-    if (this.state.submittedComment.length > 0) {
-      return true;
-    }
-    return false;
+    let newDone = Object.assign({}, { done: !this.props.done });
+    this.props.updateDone(newDone);
   }
 
   render() {
@@ -56,20 +41,17 @@ class CommentForm extends React.Component {
         <form id="comment-form" onSubmit={this.handleSubmit}>
           <label>
             Add a comment:
-            <input value={this.props.comment} disabled={this.props.done} type="text"  onChange={this.handleChange} />
+            <input
+              value={this.props.comment}
+              disabled={this.props.done}
+              type="text"
+              onChange={this.handleChange}
+            />
           </label>
-          <button
-
-
-            onClick={this.handleClick}
-          >
-
-            {this.props.done? "Edit" : "Save"}
+          <button onClick={this.handleClick}>
+            {this.props.done ? "Edit" : "Save"}
           </button>
-          <p>
-          {this.props.comment}
-          </p>
-          {/* {this.state.submittedComment && <p>{this.state.submittedComment}</p>} */}
+          <p>{this.props.comment}</p>
         </form>
       </div>
     );
