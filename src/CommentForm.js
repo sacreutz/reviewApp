@@ -11,6 +11,10 @@ class CommentForm extends React.Component {
     this.sendDelta = this.sendDelta.bind(this);
   }
 
+  componentDidMount() {
+    document.getElementById('result').innerHTML = localStorage.getItem('comment');
+  }
+
   sendDelta(delta) {
     let newComment = Object.assign({}, delta);
     this.props.updateComment(newComment);
@@ -27,6 +31,8 @@ class CommentForm extends React.Component {
 
     let newDone = Object.assign({}, { done: !this.props.done });
     this.props.updateDone(newDone);
+
+    document.getElementById('result').innerHTML = localStorage.getItem('comment');
   }
 
   render() {
@@ -51,7 +57,8 @@ class CommentForm extends React.Component {
           <button onClick={this.handleClick}>
             {this.props.done ? "Edit" : "Save"}
           </button>
-          <p>{this.props.comment}</p>
+          {/* <p>{this.props.comment}</p> */}
+          <p id="result">/</p>
         </form>
       </div>
     );
