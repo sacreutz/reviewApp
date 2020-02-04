@@ -19,10 +19,11 @@ const ReviewCard = (props) => {
       <h3>{review.place}</h3>
       <h3>Rating: {review.rating} stars</h3>
 
-
+      <div>
       <h4> Submitted by: {review.author}</h4>
 
-      <h4>Date submitted: {review.published_at}</h4>
+      <h4>Date submitted: {review.published_at.slice(0,15)}</h4>
+      </div>
     </li>
   );
   }
@@ -37,7 +38,8 @@ const ReviewCard = (props) => {
 
       <h4> Submitted by: {review.author}</h4>
 
-      <h4>Date submitted: {review.published_at}</h4>
+      <h4>Date submitted: {review.published_at.slice(0,15)}</h4>
+
     </li>
     <div>
       <CommentForm />

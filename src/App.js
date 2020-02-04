@@ -13,10 +13,10 @@ const App = () => (
   <Router>
 
     <div>
-      <Route exact path="/" render={() => <div>Home</div>} />
+      {/* <Route exact path="/" render={() => <div>Home</div>} /> */}
       <Route
         exact
-        path="/reviews"
+        path={["/reviews", "/"]}
         render={routerProps => {
           return (
             <div>
