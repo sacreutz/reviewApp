@@ -3,8 +3,6 @@ import './CommentForm.css';
 
 class CommentForm extends React.Component {
 
-
-
   constructor(props) {
     super(props);
     this.state = {comment: '',
@@ -41,7 +39,7 @@ class CommentForm extends React.Component {
 
     const commentStyle = {
       position: "absolute",
-      top: "70%",
+      top: "80%",
       left: "50%",
       margin: "-70px 0 0 -170px"
    }
