@@ -8,10 +8,12 @@ class CommentForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {comment: '',
-    submittedComment: ''}
+    submittedComment: '',
+    }
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.isDisabled = this.isDisabled.bind(this);
   }
 
   handleChange(event) {
@@ -19,11 +21,20 @@ class CommentForm extends React.Component {
   }
 
   handleSubmit(event) {
-   // alert('A comment was submitted: ' + this.state.value);
     event.preventDefault();
-    this.setState(prevState => ({ submittedComment: prevState.comment }));
+    this.setState(prevState => ({ submittedComment: prevState.comment}));
+    this.clearForm();
+  }
 
+  clearForm = () => {
+    document.getElementById("comment-form").reset();
+  }
 
+  isDisabled(){
+    if (this.state.submittedComment.length > 0) {
+      return true;
+    }
+    return false;
   }
 
   render() {
@@ -36,12 +47,12 @@ class CommentForm extends React.Component {
    }
     return (
       <div className="formContainer" style={commentStyle}>
-      <form onSubmit={this.handleSubmit}>
+      <form id="comment-form" onSubmit={this.handleSubmit}>
         <label>
           Add a comment:
           <input type="text" comment="comment" onChange={this.handleChange} />
         </label>
-        <button type="submit" onClick={this.handleSubmit}> Submit </button>
+        <button disabled={this.isDisabled()} type="submit" onClick={this.handleSubmit}> Submit </button>
         {this.state.submittedComment && <p>{this.state.submittedComment}</p>}
       </form>
 
