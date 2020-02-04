@@ -9,7 +9,6 @@ import Navbar from "./NavBar";
 const App = () => (
   <Router>
     <div>
-      {/* <Route exact path="/" render={() => <div>Home</div>} /> */}
       <Route
         exact
         path={["/reviews", "/"]}
@@ -26,15 +25,10 @@ const App = () => (
         path={`/reviews/:reviewId`}
         render={routerProps => {
           const reviewIdFromParams = routerProps.match.params.reviewId;
-
-          // console.log("routerProps", routerProps);
-          // console.log("match", routerProps.match);
           //add lodash get here
           const test = Data.filter(
             review => console.log(review) || review.id === reviewIdFromParams
           )[0];
-
-          // console.log("test", test);
           return (
             <div>
               <Navbar />
