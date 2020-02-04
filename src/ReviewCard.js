@@ -17,13 +17,13 @@ class ReviewCard extends React.Component {
   }
 
   getInitialState() {
-    var comment = localStorage.getItem("comment") || "";
+   var comment = localStorage.getItem(this.props.review.id) || "";
     this.setState({ comment: comment });
   }
 
   updateComment(newComment) {
     this.setState({ comment: newComment.comment, done: newComment.done });
-    localStorage.setItem("comment", newComment.comment);
+   localStorage.setItem(this.props.review.id, newComment.comment);
   }
 
   updateDone(newDone) {
@@ -81,6 +81,7 @@ class ReviewCard extends React.Component {
               comment={this.state.comment}
               updateComment={this.updateComment}
               updateDone={this.updateDone}
+              id={this.props.review.id}
             />
           </div>
         </div>

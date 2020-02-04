@@ -12,7 +12,7 @@ class CommentForm extends React.Component {
   }
 
   componentDidMount() {
-    document.getElementById('result').innerHTML = localStorage.getItem('comment');
+    document.getElementById('result').innerHTML = localStorage.getItem(this.props.id);
   }
 
   sendDelta(delta) {
@@ -23,6 +23,8 @@ class CommentForm extends React.Component {
   handleChange(event) {
     this.sendDelta({ comment: event.target.value });
     this.setState({ comment: event.target.value });
+
+
   }
 
   handleClick(event) {
@@ -32,7 +34,8 @@ class CommentForm extends React.Component {
     let newDone = Object.assign({}, { done: !this.props.done });
     this.props.updateDone(newDone);
 
-    document.getElementById('result').innerHTML = localStorage.getItem('comment');
+    document.getElementById('result').innerHTML =
+    localStorage.getItem(this.props.id);
   }
 
   render() {
@@ -58,7 +61,7 @@ class CommentForm extends React.Component {
             {this.props.done ? "Edit" : "Save"}
           </button>
           {/* <p>{this.props.comment}</p> */}
-          <p id="result">/</p>
+          <p id="result"></p>
         </form>
       </div>
     );
