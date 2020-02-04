@@ -11,11 +11,22 @@ class ReviewCard extends React.Component {
                     done: false}
     this.updateComment = this.updateComment.bind(this);
     this.updateDone = this.updateDone.bind(this);
+    this.getInitialState = this.getInitialState.bind(this);
   }
 
- 
+
+  componentDidMount(){
+    this.getInitialState();
+  }
+
+  getInitialState() {
+    var comment = localStorage.getItem( 'comment' ) || "";
+    this.setState({comment : comment})
+}
+
   updateComment(newComment){
     this.setState( {comment: newComment.comment, done: newComment.done})
+    localStorage.setItem('comment', newComment.comment);
   }
 
   updateDone(newDone) {
