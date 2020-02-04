@@ -15,7 +15,8 @@ const ReviewCard = (props) => {
   if (props.someData === "yes") {
   return (
     <li className="cardContainer">
-      <h3>Rating: {review.rating}</h3>
+      <h3>{review.place}</h3>
+      <h3>Rating: {review.rating} stars</h3>
 
 
       <h4> Submitted by: {review.author}</h4>
@@ -28,6 +29,7 @@ const ReviewCard = (props) => {
 
     return (
       <li className="cardContainer" style={myStyle}>
+       <h3>{review.place}</h3>
       <h3>Rating: {review.rating}</h3>
       {review && <h5>{review.content}</h5>}
 
